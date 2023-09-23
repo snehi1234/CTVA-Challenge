@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Statistics</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="header">
+        <div class="left-form">
+            <form action="/api/weather" method="GET">
+                <label for="weatherStation">Weather Station:</label>
+                <input type="text" id="weatherStation" name="weatherStation:">
+                <label for="dateMMYY">Date:</label>
+                <input type="text" id="dateMMYY" name="dateMMYY">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <br>
+        <div class="right-form">
+            <form action="/api/weather/stats" method="GET">
+                <label for="weatherStation">Weather Station:</label>
+                <input type="text" id="weatherStation" name="weatherStation">
+                <label for="year">Year:</label>
+                <input type="text" id="year" name="year">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="results">
+    <table>
+        <thead>
+            <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 3</th>
+                <!-- Add more table headers as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in search_results %}
+            <tr>
+                <td>{{ item.field1 }}</td>
+                <td>{{ item.field2 }}</td>
+                <td>{{ item.field3 }}</td>
+                <!-- Add more table data cells as needed -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
